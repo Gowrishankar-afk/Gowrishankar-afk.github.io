@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gowrishankar S – MBA Finance & Business Analytics | SAP FICO</title>
+<meta name="description" content="MBA candidate in Finance & Business Analytics with experience in Power BI, SAP S/4HANA FI, and data-driven decision-making.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDF1F4; --paper:#FBFCFC; --ink:#17243A; --muted:#55627A;
+  --rule:#C9D3DD; --accent:#0F6B5C; --accent-ink:#FFFFFF; --mark:#F2C14E; --glow:rgba(15,107,92,.14);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0F1724;--paper:#162033;--ink:#E8EDF3;--muted:#9AA8BD;--rule:#2B3A52;--accent:#5CC9B2;--accent-ink:#0F1724;--glow:rgba(92,201,178,.16)}
+}
+:root[data-theme="dark"]{--bg:#0F1724;--paper:#162033;--ink:#E8EDF3;--muted:#9AA8BD;--rule:#2B3A52;--accent:#5CC9B2;--accent-ink:#0F1724;--glow:rgba(92,201,178,.16)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(28rem circle at var(--mx,50%) var(--my,20%),var(--glow),transparent 70%);background-attachment:fixed}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+#bar{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;z-index:20}
+.page{max-width:62rem;margin:0 auto;padding:clamp(1rem,4vw,3rem)}
+.sheet{background:var(--paper);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.in-pad{padding:clamp(1.25rem,5vw,3.5rem)}
+
+/* Hero: the line chart draws itself behind the name */
+.hero{position:relative;padding:clamp(1.25rem,5vw,3.5rem) clamp(1.25rem,5vw,3.5rem) 2rem;min-height:30rem;display:flex;flex-direction:column;justify-content:flex-end;border-bottom:2px solid var(--ink)}
+#chart{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero>*:not(canvas){position:relative}
+h1{font:600 clamp(2.8rem,10vw,6rem)/.98 var(--serif);letter-spacing:-.025em;margin:0 0 .7rem}
+h1 .l{display:inline-block;transform:translateY(0)}
+.js h1 .l{opacity:0;transform:translateY(60%) rotate(4deg);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*55ms + 250ms)}
+@keyframes rise{to{opacity:1;transform:none}}
+.role{font:500 clamp(1.05rem,2.6vw,1.35rem)/1.4 var(--serif);color:var(--accent);margin:0 0 1rem}
+.profile{max-width:40rem;margin:0 0 1.5rem;color:var(--muted)}
+.contact{display:flex;flex-wrap:wrap;gap:.6rem}
+.btn{display:inline-block;padding:.55rem 1rem;border-radius:4px;text-decoration:none;font-weight:500;border:1.5px solid var(--ink);transition:transform .2s,background .2s}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{background:var(--mark);border-color:var(--mark);color:#17243A}
+
+/* Ticker */
+.ticker{overflow:hidden;border-bottom:1px solid var(--rule);background:var(--ink);color:var(--paper);font-weight:500;font-size:.9rem}
+.track{display:flex;width:max-content;animation:scroll 32s linear infinite}
+.ticker:hover .track{animation-play-state:paused}
+.track span{padding:.6rem 1.6rem;white-space:nowrap}
+.track b{color:var(--mark);font-weight:600;margin-left:.4rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));border-bottom:1px solid var(--rule)}
+.stat{padding:1.4rem clamp(1rem,3vw,2rem);border-right:1px solid var(--rule)}
+.stat:last-child{border-right:0}
+.num{font:600 clamp(2rem,6vw,3rem)/1 var(--serif);font-variant-numeric:tabular-nums;color:var(--accent)}
+.lbl{color:var(--muted);font-size:.9rem}
+
+section{padding-top:2.5rem}
+h2{font:600 1.8rem/1.2 var(--serif);margin:0 0 1.2rem}
+h3{font:600 1.15rem/1.35 var(--serif);margin:0}
+.org{margin:.1rem 0 .5rem;color:var(--accent);font-weight:500}
+ul{margin:.4rem 0 0;padding-left:1.1rem}
+li{margin:.3rem 0;max-width:46rem}
+li::marker{color:var(--accent)}
+.note{color:var(--muted);font-size:.9rem;margin:.1rem 0 0}
+
+/* Timeline whose line draws as you scroll */
+.tl{position:relative;padding-left:2.2rem}
+.tl::before,.tl::after{content:"";position:absolute;left:.45rem;top:.5rem;bottom:.5rem;width:2px}
+.tl::before{background:var(--rule)}
+.tl::after{background:var(--accent);transform:scaleY(var(--p,0));transform-origin:top}
+.item{position:relative;padding:0 0 1.8rem}
+.item:last-child{padding-bottom:0}
+.item::before{content:"";position:absolute;left:-2.2rem;top:.35rem;width:1rem;height:1rem;border-radius:50%;background:var(--paper);border:2px solid var(--rule);transition:all .4s;z-index:1}
+.item.in::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 .4rem var(--glow)}
+.when{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.9rem;margin-bottom:.1rem}
+.item>div{transition:opacity .5s,transform .5s}
+.js .item:not(.in)>div{opacity:.35;transform:translateX(.6rem)}
+
+/* Project cards: tilt answers the pointer */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1.2rem;perspective:900px}
+.card{border:1px solid var(--rule);border-radius:6px;padding:1.2rem;background:var(--paper);position:relative;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s,border-color .2s}
+.card:hover{border-color:var(--accent)}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .2s;
+  background:radial-gradient(14rem circle at var(--cx,50%) var(--cy,50%),var(--glow),transparent 70%)}
+.card:hover::after{opacity:1}
+.tag{display:inline-block;font-size:.82rem;font-weight:500;color:var(--accent-ink);background:var(--accent);border-radius:999px;padding:.1rem .65rem;margin-bottom:.6rem}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.5rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;padding:0;margin:.6rem 0 0}
+.chips li{margin:0;padding:.3rem .75rem;border:1px solid var(--rule);border-radius:999px;font-size:.92rem;transition:background .2s,transform .2s}
+.js .chips li{opacity:0;transform:scale(.8)}
+.chips.in li{opacity:1;transform:none;transition:opacity .4s calc(var(--i)*90ms),transform .5s cubic-bezier(.3,1.6,.5,1) calc(var(--i)*90ms),background .2s}
+.chips li:hover{background:var(--mark);border-color:var(--mark);color:#17243A}
+
+.row{display:grid;grid-template-columns:9rem 1fr;gap:.2rem 2rem;padding:1rem 0;border-top:1px solid var(--rule)}
+.row:last-child{border-bottom:1px solid var(--rule)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:2rem}
+.plain{list-style:none;padding:0;margin:0}
+.plain li{padding:.6rem 0;border-top:1px solid var(--rule);margin:0;transition:padding .25s}
+.plain li:hover{padding-left:.6rem}
+.plain li:last-child{border-bottom:1px solid var(--rule)}
+.plain span{display:block;color:var(--muted);font-size:.9rem}
+footer{margin:1.5rem 0;text-align:center;color:var(--muted);font-size:.85rem}
+@media (max-width:600px){.row{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--rule)}}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .js h1 .l,.js .chips li,.js .item:not(.in)>div{opacity:1;transform:none}
+}
+@media print{body{background:#fff}.sheet{border:0}#bar,.ticker{display:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div class="page">
+<main class="sheet">
+
+<header class="hero">
+  <canvas id="chart" aria-hidden="true"></canvas>
+  <h1 aria-label="Gowrishankar S">Gowrishankar S</h1>
+  <p class="role">MBA Finance & Business Analytics | SAP FICO</p>
+  <p class="profile">MBA candidate with hands-on experience in Power BI dashboards, SAP S/4HANA FI, statistical analysis, and data-driven decision-making. Looking for high-impact roles in analytics and finance.</p>
+  <div class="contact">
+    <a class="btn primary" href="mailto:shankargjs164@gmail.com">shankargjs164@gmail.com</a>
+    <a class="btn" href="tel:+919976669606">+91 99766 69606</a>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<div class="stats">
+  <div class="stat"><div class="num" data-n="3">0</div><div class="lbl">Internships</div></div>
+  <div class="stat"><div class="num" data-n="79" data-s="%">0</div><div class="lbl">MBA score so far</div></div>
+  <div class="stat"><div class="num" data-n="3">0</div><div class="lbl">Projects</div></div>
+  <div class="stat"><div class="num" data-n="5">0</div><div class="lbl">Certificates</div></div>
+</div>
+
+<div class="in-pad">
+
+<section id="experience" style="padding-top:0">
+  <h2>Professional experience</h2>
+  <div class="tl" id="tl">
+    <div class="item"><div>
+      <div class="when">06/2026 – 07/2026</div>
+      <h3>Intern, HR & Finance</h3><p class="org">Jayam Engineering and Tools</p>
+      <ul>
+        <li>Assisted with recruitment coordination, employee records, and payroll processing support.</li>
+        <li>Supported the finance team with accounts documentation, invoice tracking, and basic financial reports.</li>
+      </ul>
+    </div></div>
+    <div class="item"><div>
+      <div class="when">02/2026 – 04/2026</div>
+      <h3>SAP S/4HANA FI Cloud Intern</h3><p class="org">Tekcactus</p>
+      <ul>
+        <li>Gained hands-on exposure to SAP S/4HANA Finance (FI) on the cloud, supporting configuration and workflows across accounts payable, accounts receivable, and general ledger.</li>
+      </ul>
+    </div></div>
+    <div class="item"><div>
+      <div class="when">06/2025 – 07/2025</div>
+      <h3>Business Analytics Intern</h3><p class="org">Corizo Edutech</p>
+      <ul>
+        <li>Built analytics reports and dashboards to track business KPIs, supporting management decision-making.</li>
+        <li>Collaborated with cross-functional teams to identify data quality issues and streamline reporting workflows.</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="cards">
+    <article class="card">
+      <span class="tag">Power BI</span>
+      <h3>Financial Performance Dashboard</h3>
+      <ul>
+        <li>Designed a dynamic dashboard evaluating sales, profitability trends, and the impact of discounting on revenue using DAX measures and margin ratios.</li>
+        <li>Identified underperforming product categories and quantified how aggressive discounting reduced net profit.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <span class="tag">Academic project</span>
+      <h3>SAP FI-Based Financial Accounting and Reporting System</h3>
+      <ul>
+        <li>Managed G/L accounts, vendor and customer invoices, payments, and account clearing across accounts payable and receivable.</li>
+        <li>Generated financial statements and analysed financial data using Excel and Power BI.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <span class="tag">Simulated project</span>
+      <h3>Supermarket Sales Analysis – Major Project</h3>
+      <p class="org">Corizo Edutech</p>
+      <ul>
+        <li>Analysed transaction data using descriptive statistics and visualisation, deriving insights on pricing strategy and customer purchase patterns.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Tools & technical skills</h2>
+  <div class="skills">
+    <div>
+      <h3>Business intelligence & analytics</h3>
+      <ul class="chips"><li style="--i:0">Power BI (Dashboards & DAX)</li><li style="--i:1">Tableau</li><li style="--i:2">Advanced MS Excel</li></ul>
+    </div>
+    <div>
+      <h3>ERP & finance</h3>
+      <ul class="chips"><li style="--i:0">SAP FICO (Finance Module)</li><li style="--i:1">Tally ERP (Accounting)</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <div class="row">
+    <div class="when">2025 – 2027</div>
+    <div><h3>Master of Business Administration</h3><p class="org">Sree Saraswathi Thyagaraja College, Pollachi</p><p class="note">Finance & Business Analytics | 79% (pursuing)</p></div>
+  </div>
+  <div class="row">
+    <div class="when">2022 – 2025</div>
+    <div><h3>Bachelor of Commerce</h3><p class="org">Sree Saraswathi Thyagaraja College, Pollachi</p><p class="note">68%</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="two">
+    <div id="certificates">
+      <h2>Certificates</h2>
+      <ul class="plain">
+        <li>Power BI Data Modelling<span>Microsoft</span></li>
+        <li>Tableau Visualisation<span>Simplilearn</span></li>
+        <li>Applied Finance Immersion<span>R.A. Podar, Mumbai</span></li>
+        <li>NISM Securities Markets<span>NISM Mumbai</span></li>
+        <li>Commercial Banking & FinTech<span>NPTEL, 70%</span></li>
+      </ul>
+    </div>
+    <div id="leadership">
+      <h2>Leadership & achievements</h2>
+      <ul class="plain">
+        <li>President, TYMA (2026 – 2027)<span>School of Management, Sree Saraswathi Thyagaraja College, Pollachi</span></li>
+        <li>Paper presentation: “AI in Rural Empowerment & Financial Inclusion”<span>Presented research on AI-driven solutions for advancing rural empowerment and financial inclusion for underserved communities.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+<footer>Gowrishankar S</footer>
+</div>
+
+<script>
+(function(){
+  var d=document,root=d.documentElement,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  root.classList.add('js');
+
+  // Name: letters rise one by one
+  var h=d.querySelector('h1'),t=h.textContent;h.textContent='';
+  for(var i=0;i<t.length;i++){var s=d.createElement('span');s.className='l';s.style.setProperty('--i',i);s.setAttribute('aria-hidden','true');s.innerHTML=t[i]===' '?'&nbsp;':t[i];h.appendChild(s)}
+
+  // Ticker of tools
+  var tools=['Power BI','SAP S/4HANA FI','DAX','Tableau','Advanced Excel','Tally ERP','Accounts Payable','Accounts Receivable','General Ledger'];
+  var html=tools.map(function(x){return '<span>'+x+'<b>▲</b></span>'}).join('');
+  d.getElementById('track').innerHTML=html+html;
+
+  // Hero chart: a rising line draws itself
+  var c=d.getElementById('chart'),x=c.getContext('2d'),W,H,pts=[],prog=0,dpr=Math.min(devicePixelRatio||1,2);
+  function css(n){return getComputedStyle(root).getPropertyValue(n).trim()}
+  function seed(){var n=48,v=.18,r=7;pts=[];for(var i=0;i<n;i++){r=(r*9301+49297)%233280;var e=r/233280-.42;v+=e*.09+.011;v=Math.max(.06,Math.min(.9,v));pts.push(v)}}
+  function size(){var b=c.getBoundingClientRect();W=b.width;H=b.height;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
+  function px(i){return [i/(pts.length-1)*W,H*.92-pts[i]*H*.62]}
+  function draw(){
+    x.clearRect(0,0,W,H);
+    x.strokeStyle=css('--rule');x.lineWidth=1;x.globalAlpha=.5;
+    for(var g=1;g<6;g++){x.beginPath();x.moveTo(0,H*g/6);x.lineTo(W,H*g/6);x.stroke()}
+    x.globalAlpha=1;
+    var upto=prog*(pts.length-1),k=Math.floor(upto),f=upto-k,acc=css('--accent');
+    x.beginPath();var p0=px(0);x.moveTo(p0[0],p0[1]);
+    for(var i=1;i<=k;i++){var p=px(i);x.lineTo(p[0],p[1])}
+    var end=p0;
+    if(k<pts.length-1){var a=px(k),b=px(k+1);end=[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];x.lineTo(end[0],end[1])}else end=px(pts.length-1);
+    x.strokeStyle=acc;x.lineWidth=3;x.lineJoin='round';x.stroke();
+    x.lineTo(end[0],H);x.lineTo(0,H);x.closePath();
+    var gr=x.createLinearGradient(0,0,0,H);gr.addColorStop(0,css('--glow'));gr.addColorStop(1,'transparent');x.fillStyle=gr;x.fill();
+    var pulse=reduce?0:(Math.sin(performance.now()/300)+1)*4;
+    x.beginPath();x.arc(end[0],end[1],5,0,7);x.fillStyle=css('--mark');x.fill();
+    x.beginPath();x.arc(end[0],end[1],8+pulse,0,7);x.strokeStyle=css('--mark');x.lineWidth=1.5;x.globalAlpha=.6;x.stroke();x.globalAlpha=1;
+  }
+  function loop(){if(prog<1)prog=Math.min(1,prog+.0065);draw();if(!reduce||prog<1)requestAnimationFrame(loop)}
+  seed();size();addEventListener('resize',function(){size();draw()});
+  if(reduce){prog=1;draw()}else{setTimeout(loop,300)}
+
+  // Cursor glow
+  addEventListener('pointermove',function(e){root.style.setProperty('--mx',e.clientX+'px');root.style.setProperty('--my',e.clientY+'px')},{passive:true});
+
+  // Scroll: progress bar + timeline line
+  var bar=d.getElementById('bar'),tl=d.getElementById('tl');
+  function onScroll(){
+    var m=root.scrollHeight-innerHeight;bar.style.transform='scaleX('+(m>0?scrollY/m:0)+')';
+    var r=tl.getBoundingClientRect(),p=(innerHeight*.65-r.top)/r.height;tl.style.setProperty('--p',Math.max(0,Math.min(1,p)));
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // Reveal: timeline nodes, chips, stat counters
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;var el=e.target;el.classList.add('in');io.unobserve(el);
+    if(el.dataset.n){var n=+el.dataset.n,s=el.dataset.s||'',st=performance.now();
+      (function step(now){var q=reduce?1:Math.min(1,(now-st)/1200);el.textContent=Math.round(n*(1-Math.pow(1-q,3)))+s;if(q<1)requestAnimationFrame(step)})(st)}
+  })},{threshold:.4,rootMargin:'0px 0px -10% 0px'});
+  d.querySelectorAll('.item,.chips,.num').forEach(function(el){io.observe(el)});
+
+  // Card tilt follows the pointer
+  d.querySelectorAll('.card').forEach(function(cd){
+    cd.addEventListener('pointermove',function(e){if(reduce)return;var r=cd.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+      cd.style.setProperty('--ry',((px-.5)*8)+'deg');cd.style.setProperty('--rx',((.5-py)*8)+'deg');cd.style.setProperty('--cx',px*100+'%');cd.style.setProperty('--cy',py*100+'%')});
+    cd.addEventListener('pointerleave',function(){cd.style.setProperty('--rx','0deg');cd.style.setProperty('--ry','0deg')});
+  });
+})();
+</script>
+</body>
+</html>
